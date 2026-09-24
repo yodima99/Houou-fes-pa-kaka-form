@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>鳳櫻祭2026実行委員会オリジナルトレーナー ONLINE STORE</title>
+  <title>ゆらぎOFFICIAL STORE | 鳳櫻祭2026オリジナルグッズ申込サイト</title>
   <meta name="description" content="鳳櫻祭2026実行委員会オリジナルトレーナーのオンライン申込ページ。">
   
   <!-- Google Fonts -->
@@ -11,9 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
   
-  <!-- Lucide Icons & Confetti CDN -->
+  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -23,8 +22,8 @@
     <!-- HEADER NAVBAR -->
     <header class="app-header">
       <a href="#" class="brand-logo" onclick="switchStep(1); return false;">
-        <span class="brand-title">鳳櫻祭2026 OFFICIAL STORE</span>
-        <span class="brand-sub">実行委員会オリジナルグッズ申込</span>
+        <span class="brand-title">ゆらぎOFFICIAL STORE</span>
+        <span class="brand-sub">鳳櫻祭2026オリジナルグッズ申込サイト</span>
       </a>
 
       <div class="header-icons">
@@ -62,21 +61,46 @@
     =========================================== -->
     <section class="view-section active" id="view1">
       <div class="product-grid">
-        <!-- LEFT: PRODUCT IMAGE -->
+        <!-- LEFT: PRODUCT IMAGE CAROUSEL SLIDER -->
         <div class="product-gallery">
-          <div class="main-image-wrapper">
-            <img id="mainProductImg" src="assets/sweatshirt.jpg" alt="鳳櫻祭2026実行委員会オリジナルトレーナー">
+          <div class="slider-container" id="sliderContainer">
+            <div class="slider-track" id="sliderTrack">
+              <div class="slide-item">
+                <img src="assets/sweatshirt.jpg" alt="鳳櫻祭2026実行委員会オリジナルトレーナー 1">
+              </div>
+              <div class="slide-item">
+                <img src="assets/hoodie_white_bg.jpg" alt="鳳櫻祭2026実行委員会オリジナルトレーナー 2">
+              </div>
+            </div>
+
+            <!-- ARROWS -->
+            <button class="slider-arrow prev" onclick="prevSlide()" title="前へ">
+              <i data-lucide="chevron-left" style="width:18px;"></i>
+            </button>
+            <button class="slider-arrow next" onclick="nextSlide()" title="次へ">
+              <i data-lucide="chevron-right" style="width:18px;"></i>
+            </button>
+
+            <!-- DOTS -->
+            <div class="slider-dots">
+              <div class="dot active" onclick="goToSlide(0)"></div>
+              <div class="dot" onclick="goToSlide(1)"></div>
+            </div>
           </div>
         </div>
 
         <!-- RIGHT: PRODUCT DETAILS & PREORDER ACTION -->
         <div class="product-details">
           <span class="category-tag">鳳櫻祭 2026 // OFFICIAL PREORDER</span>
-          <h1 class="product-title">鳳櫻祭2026実行委員会オリジナルトレーナー</h1>
+          
+          <h1 class="product-title">
+            <span style="font-size:1.1rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">鳳櫻祭2026実行委員会</span>
+            <span>オリジナルトレーナー</span>
+          </h1>
           
           <div class="price-box">
-            <span class="current-price">¥4,000</span>
-            <span class="price-tax">税込（1枚）</span>
+            <span class="current-price">約 ¥4,000 前後</span>
+            <span class="price-tax">税込（1枚あたり）</span>
           </div>
 
           <p class="product-desc">
@@ -88,27 +112,27 @@
             カートに追加する (申し込む)
           </button>
 
-          <!-- ACCORDION DETAILS -->
+          <!-- ACCORDION DETAILS WITH SMOOTH ANIMATION -->
           <div class="accordion-group">
-            <div class="accordion-item">
-              <button class="accordion-header" onclick="toggleAccordion('acc1')">
+            <div class="accordion-item open" id="accItem1">
+              <button class="accordion-header" onclick="toggleAccordion('accItem1')">
                 <span>■ 商品仕様 / 素材</span>
-                <i data-lucide="chevron-down" style="width:16px;"></i>
+                <i data-lucide="chevron-down" class="accordion-icon" style="width:16px;"></i>
               </button>
-              <div class="accordion-content" id="acc1" style="display:block;">
+              <div class="accordion-content">
                 商品名: 鳳櫻祭2026実行委員会オリジナルトレーナー<br>
                 仕様: 10.0オンス T／Cクルーネック スウェット（裏起毛）<br>
                 素材: 綿52%、ポリエステル48%、裏起毛<br>
-                カラー: NAVY（ネイビー一色限定）
+                カラー: ネイビー
               </div>
             </div>
 
-            <div class="accordion-item">
-              <button class="accordion-header" onclick="toggleAccordion('acc2')">
+            <div class="accordion-item" id="accItem2">
+              <button class="accordion-header" onclick="toggleAccordion('accItem2')">
                 <span>■ サイズ寸法表 (cm)</span>
-                <i data-lucide="chevron-down" style="width:16px;"></i>
+                <i data-lucide="chevron-down" class="accordion-icon" style="width:16px;"></i>
               </button>
-              <div class="accordion-content" id="acc2">
+              <div class="accordion-content">
                 <table class="sheet-table" style="margin-top:8px;">
                   <thead>
                     <tr>
@@ -131,13 +155,13 @@
               </div>
             </div>
 
-            <div class="accordion-item">
-              <button class="accordion-header" onclick="toggleAccordion('acc3')">
+            <div class="accordion-item" id="accItem3">
+              <button class="accordion-header" onclick="toggleAccordion('accItem3')">
                 <span>■ 販売価格・注意事項</span>
-                <i data-lucide="chevron-down" style="width:16px;"></i>
+                <i data-lucide="chevron-down" class="accordion-icon" style="width:16px;"></i>
               </button>
-              <div class="accordion-content" id="acc3">
-                ※全学年・クラスでの最終発注枚数により、価格が「4,000円前後」で確定いたします。<br>
+              <div class="accordion-content">
+                ※最終的な全体の発注枚数により、価格が多少前後します。<br>
                 ※印刷仕様やデザインは調整により実物と多少変更となる可能性がございます。あらかじめご了承ください。
               </div>
             </div>
@@ -189,7 +213,7 @@
 
             <h2 class="form-section-title" style="margin-top:32px;">サイズごとの個数を選択</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">
-              ※複数の異なるサイズを組み合わせて申し込みいただけます。必要なサイズの数量を [+] [-] で選択してください。
+              ※必要なサイズの数量を [+] [-] で選択してください。
             </p>
 
             <!-- MULTI-SIZE QUANTITY SELECTOR LIST -->
@@ -206,14 +230,14 @@
                 </div>
               </div>
 
-              <div class="size-qty-row has-qty" id="sizeRow_M">
+              <div class="size-qty-row" id="sizeRow_M">
                 <div class="size-info">
                   <span class="size-badge">M</span>
                   <span class="size-specs">身丈67 / 身幅55 / 肩幅48 / 袖丈60</span>
                 </div>
                 <div class="qty-counter">
                   <button type="button" class="counter-btn" onclick="adjustSizeQty('M', -1)">-</button>
-                  <input type="number" class="counter-input" id="qty_M" value="1" min="0" max="10" readonly>
+                  <input type="number" class="counter-input" id="qty_M" value="0" min="0" max="10" readonly>
                   <button type="button" class="counter-btn" onclick="adjustSizeQty('M', 1)">+</button>
                 </div>
               </div>
@@ -292,23 +316,23 @@
               <img id="summaryThumb" src="assets/sweatshirt.jpg" style="width:60px; height:60px; object-fit:cover; border-radius:4px;" alt="選択中のトレーナー">
               <div>
                 <div style="font-weight:700; font-size:0.85rem;">鳳櫻祭2026トレーナー</div>
-                <div style="font-size:0.75rem; color:var(--text-light);">NAVY（裏起毛）</div>
+                <div style="font-size:0.75rem; color:var(--text-light);">ネイビー（裏起毛）</div>
               </div>
             </div>
 
             <div class="summary-item">
               <span>選択中のサイズ内訳</span>
-              <span id="summarySizeBreakdown" style="font-weight:700; text-align:right;">M×1</span>
+              <span id="summarySizeBreakdown" style="font-weight:700; text-align:right;">選択なし</span>
             </div>
 
             <div class="summary-item">
               <span>合計購入枚数</span>
-              <span id="summaryQty" style="font-weight:700;">1枚</span>
+              <span id="summaryQty" style="font-weight:700;">0枚</span>
             </div>
 
             <div class="summary-total">
               <span>概算お支払合計</span>
-              <span id="summaryTotalPrice">約 ¥4,000</span>
+              <span id="summaryTotalPrice">約 ¥0</span>
             </div>
             <div style="font-size:0.7rem; color:var(--accent-amber); margin-top:6px; text-align:right;">
               ※全体の発注数により多少変動します
@@ -339,6 +363,10 @@
             <span class="val">鳳櫻祭2026実行委員会オリジナルトレーナー</span>
           </div>
           <div class="confirm-row">
+            <span class="label">カラー</span>
+            <span class="val">ネイビー</span>
+          </div>
+          <div class="confirm-row">
             <span class="label">サイズ内訳 / 合計枚数</span>
             <span class="val" id="confirmSizeQty">Mサイズ×1枚（合計1枚）</span>
           </div>
@@ -349,7 +377,7 @@
         </div>
 
         <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:24px; line-height:1.6;">
-          ※全体購入数により価格が4,000円前後で確定いたします。<br>
+          ※最終的な全体の発注枚数により、価格が多少前後します。<br>
           ※デザインや仕様は制作の都合上、実物と多少変更となる場合がありますのでご了承ください。
         </div>
 
@@ -384,9 +412,6 @@
           <button class="btn btn-secondary" onclick="resetOrderForm()">
             トップに戻る
           </button>
-          <button class="btn btn-primary" onclick="window.print()">
-            注文控えを印刷
-          </button>
         </div>
       </div>
     </section>
@@ -394,7 +419,7 @@
   </div> <!-- /app-container -->
 
   <footer style="text-align:center; padding:40px 0; color:var(--text-light); font-size:0.75rem; border-top:1px solid var(--border-light); margin-top:60px;">
-    <p>© 2026 鳳櫻祭実行委員会 OFFICIAL STORE</p>
+    <p>© 2026 鳳櫻祭実行委員会</p>
   </footer>
 
   <script src="app.js"></script>

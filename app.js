@@ -6,10 +6,15 @@ const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxIjSqr8f7cs3cu
 const UNIT_PRICE = 4000;
 let currentStep = 1;
 
-// MULTI-SIZE QUANTITY STATE
+// CAROUSEL SLIDER STATE
+let currentSlide = 0;
+let sliderTimer = null;
+const totalSlides = 2;
+
+// ALL SIZES INITIALIZE TO 0
 const sizeQuantities = {
   'S': 0,
-  'M': 1,
+  'M': 0,
   'L': 0,
   'XL': 0,
   'XXL': 0,
@@ -22,14 +27,54 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
   updateCalculations();
+  startSliderAutoPlay();
 });
 
-// ACCORDION TOGGLE
-function toggleAccordion(id) {
-  const content = document.getElementById(id);
-  if (!content) return;
-  const isVisible = content.style.display === 'block';
-  content.style.display = isVisible ? 'none' : 'block';
+// SLIDER CAROUSEL CONTROLS
+function startSliderAutoPlay() {
+  stopSliderAutoPlay();
+  sliderTimer = setInterval(() => {
+    nextSlide();
+  }, 3500); // 3.5秒ごとに自動横スライド
+}
+
+function stopSliderAutoPlay() {
+  if (sliderTimer) clearInterval(sliderTimer);
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  if (currentSlide >= totalSlides) currentSlide = 0;
+  if (currentSlide < 0) currentSlide = totalSlides - 1;
+
+  const track = document.getElementById('sliderTrack');
+  if (track) {
+    track.style.transform = `translateX(-${currentSlide * 50}%)`;
+  }
+
+  // Update Dots
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  dots.forEach((dot, idx) => {
+    if (idx === currentSlide) dot.classList.add('active');
+    else dot.classList.remove('active');
+  });
+
+  startSliderAutoPlay();
+}
+
+function nextSlide() {
+  goToSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  goToSlide(currentSlide - 1);
+}
+
+// SMOOTH ANIMATED ACCORDION TOGGLE
+function toggleAccordion(itemId) {
+  const item = document.getElementById(itemId);
+  if (!item) return;
+  item.classList.toggle('open');
 }
 
 // MULTI-SIZE COUNTER ADJUSTMENT
@@ -159,7 +204,7 @@ async function executeOrderSubmission() {
     number: number,
     name: name,
     color: 'ネイビー',
-    size: summary.breakdownText, // 例: S×1, L×2
+    size: summary.breakdownText,
     quantity: summary.totalQuantity,
     notes: notes,
     totalPrice: `約${summary.totalPrice}円`,
@@ -174,15 +219,6 @@ async function executeOrderSubmission() {
   // 完了画面へ切替
   document.getElementById('successOrderId').textContent = orderId;
   switchStep(4);
-
-  // 紙ふぶき演出
-  if (window.confetti) {
-    confetti({
-      particleCount: 80,
-      spread: 60,
-      origin: { y: 0.6 }
-    });
-  }
 
   // Googleスプレッドシート(GAS)へのサイレント送信
   try {
@@ -202,17 +238,14 @@ async function executeOrderSubmission() {
 function resetOrderForm() {
   document.getElementById('orderForm').reset();
   
-  // Reset Quantities
+  // Reset Quantities to 0
   for (const key of Object.keys(sizeQuantities)) {
-    sizeQuantities[key] = key === 'M' ? 1 : 0;
+    sizeQuantities[key] = 0;
     const inputEl = document.getElementById(`qty_${key}`);
-    if (inputEl) inputEl.value = sizeQuantities[key];
+    if (inputEl) inputEl.value = 0;
 
     const rowEl = document.getElementById(`sizeRow_${key}`);
-    if (rowEl) {
-      if (sizeQuantities[key] > 0) rowEl.classList.add('has-qty');
-      else rowEl.classList.remove('has-qty');
-    }
+    if (rowEl) rowEl.classList.remove('has-qty');
   }
 
   updateCalculations();
