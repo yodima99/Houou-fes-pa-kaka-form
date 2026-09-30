@@ -3,7 +3,7 @@
 // =========================================================================
 const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxIjSqr8f7cs3cukSsxJFSQvU1VwaG9d_mTC0iBSTrK9U8OuHnEQ7tSe4agziJqLynd/exec"; 
 
-const UNIT_PRICE = 4000;
+const UNIT_PRICE = 5000;
 let currentStep = 1;
 
 // CAROUSEL SLIDER STATE

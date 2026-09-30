@@ -61,15 +61,15 @@
     =========================================== -->
     <section class="view-section active" id="view1">
       <div class="product-grid">
-        <!-- LEFT: PRODUCT IMAGE CAROUSEL SLIDER -->
+        <!-- LEFT: PRODUCT IMAGE CAROUSEL SLIDER (FRONT & BACK) -->
         <div class="product-gallery">
           <div class="slider-container" id="sliderContainer">
             <div class="slider-track" id="sliderTrack">
               <div class="slide-item">
-                <img src="assets/sweatshirt.jpg" alt="鳳櫻祭2026実行委員会オリジナルトレーナー 1">
+                <img src="assets/sweatshirt_front.png" alt="鳳櫻祭2026実行委員会オリジナルトレーナー（表面）">
               </div>
               <div class="slide-item">
-                <img src="assets/hoodie_white_bg.jpg" alt="鳳櫻祭2026実行委員会オリジナルトレーナー 2">
+                <img src="assets/sweatshirt_back.png" alt="鳳櫻祭2026実行委員会オリジナルトレーナー（裏面）">
               </div>
             </div>
 
@@ -99,7 +99,7 @@
           </h1>
           
           <div class="price-box">
-            <span class="current-price">約 ¥4,000 前後</span>
+            <span class="current-price">約 ¥5,000 前後</span>
             <span class="price-tax">税込（1枚あたり）</span>
           </div>
 
@@ -313,7 +313,7 @@
             <h3 style="font-size:1rem; font-weight:800; margin-bottom:16px; border-bottom:1px solid var(--border-light); padding-bottom:8px;">ORDER SUMMARY</h3>
 
             <div style="display:flex; gap:12px; margin-bottom:16px;">
-              <img id="summaryThumb" src="assets/sweatshirt.jpg" style="width:60px; height:60px; object-fit:cover; border-radius:4px;" alt="選択中のトレーナー">
+              <img id="summaryThumb" src="assets/sweatshirt_front.png" style="width:60px; height:60px; object-fit:contain; background:#fff; border-radius:4px; border:1px solid var(--border-light);" alt="選択中のトレーナー">
               <div>
                 <div style="font-weight:700; font-size:0.85rem;">鳳櫻祭2026トレーナー</div>
                 <div style="font-size:0.75rem; color:var(--text-light);">ネイビー（裏起毛）</div>
@@ -372,7 +372,7 @@
           </div>
           <div class="confirm-row">
             <span class="label">概算お支払合計金額</span>
-            <span class="val" id="confirmTotalPrice" style="font-size:1.2rem; color:var(--text-main);">約 ¥4,000</span>
+            <span class="val" id="confirmTotalPrice" style="font-size:1.2rem; color:var(--text-main);">約 ¥5,000</span>
           </div>
         </div>
 
